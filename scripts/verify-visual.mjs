@@ -49,7 +49,7 @@ try {
     if (
       visualCheck.width < 250 ||
       visualCheck.height < 300 ||
-      visualCheck.modules < 4 ||
+      visualCheck.modules < 5 ||
       visualCheck.connectionPaths < 4 ||
       !visualCheck.hasCore
     ) {
