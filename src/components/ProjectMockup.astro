@@ -26,9 +26,13 @@ const { variant, title } = Astro.props;
           </div>
           <div class="pos-main">
             <div class="pos-kpi"></div>
-            <div class="pos-grid">
+            <div class="pos-chart" aria-hidden="true">
               <span></span>
               <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="pos-grid" aria-hidden="true">
               <span></span>
               <span></span>
             </div>
@@ -53,6 +57,16 @@ const { variant, title } = Astro.props;
           <span class="network-line line-a"></span>
           <span class="network-line line-b"></span>
           <span class="network-line line-c"></span>
+          <div class="network-terminal" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div class="network-switch" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
         </div>
       )
     }
@@ -65,6 +79,10 @@ const { variant, title } = Astro.props;
             <span></span>
             <span></span>
             <span></span>
+          </div>
+          <div class="commerce-checkout" aria-hidden="true">
+            <span></span>
+            <strong></strong>
           </div>
           <div class="commerce-cart"></div>
         </div>

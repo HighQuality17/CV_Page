@@ -34,19 +34,19 @@ export const technologies = [
 
 export const highlights = [
   {
-    value: "3+",
-    label: "Proyectos destacados",
-    detail: "POS, redes híbridas y e-commerce"
-  },
-  {
     value: "AWS",
     label: "Certified Cloud Practitioner",
-    detail: "Base cloud validada"
+    detail: "Fundamentos cloud validados"
   },
   {
-    value: "Full stack",
-    label: "Desarrollo, cloud y redes",
-    detail: "Soluciones de punta a punta"
+    value: "3+",
+    label: "Proyectos full stack",
+    detail: "POS, redes y e-commerce"
+  },
+  {
+    value: "Redes",
+    label: "Híbridas automatizadas",
+    detail: "Cisco, Linux, Python y GNS3"
   },
   {
     value: "Disponible",
@@ -175,7 +175,7 @@ export const timeline = [
 ];
 
 export const contactCta = {
-  title: "Construyamos tecnología clara, útil y con impacto real.",
+  title: "Conectemos para construir soluciones tecnológicas con impacto real.",
   description:
     "Estoy listo para sumar en equipos que valoran aprendizaje, criterio técnico, colaboración y soluciones que conectan negocio, personas e infraestructura."
 };

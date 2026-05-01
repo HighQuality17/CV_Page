@@ -22,8 +22,8 @@ try {
   for (const viewport of viewports) {
     const page = await browser.newPage({ viewport });
     await page.goto(url, { waitUntil: "networkidle" });
-    await page.waitForSelector("canvas", { state: "attached", timeout: 10_000 });
-    await page.locator("canvas").first().scrollIntoViewIfNeeded();
+    await page.waitForSelector(".enterprise-core-visual", { state: "attached", timeout: 10_000 });
+    await page.locator(".enterprise-core-visual").first().scrollIntoViewIfNeeded();
     await page.waitForTimeout(800);
 
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
@@ -31,41 +31,29 @@ try {
       throw new Error(`${viewport.name}: horizontal overflow ${overflow}px`);
     }
 
-    const canvasCheck = await page.locator("canvas").evaluate((canvasElement) => {
-      const canvas = canvasElement;
-      const gl =
-        canvas.getContext("webgl2", { preserveDrawingBuffer: true }) ??
-        canvas.getContext("webgl", { preserveDrawingBuffer: true });
+    const visualCheck = await page.locator(".enterprise-core-visual").evaluate((visual) => {
+      const rect = visual.getBoundingClientRect();
+      const modules = visual.querySelectorAll(".floating-module").length;
+      const connectionPaths = visual.querySelectorAll(".core-connections path").length;
+      const core = visual.querySelector(".enterprise-core-card");
 
-      if (!gl) {
-        return { width: canvas.width, height: canvas.height, litPixels: 0 };
-      }
-
-      const samples = [];
-
-      for (let y = 0.18; y <= 0.82; y += 0.08) {
-        for (let x = 0.18; x <= 0.82; x += 0.08) {
-          samples.push([x, y]);
-        }
-      }
-      let litPixels = 0;
-
-      for (const [xRatio, yRatio] of samples) {
-        const pixel = new Uint8Array(4);
-        const x = Math.max(0, Math.min(canvas.width - 1, Math.floor(canvas.width * xRatio)));
-        const y = Math.max(0, Math.min(canvas.height - 1, Math.floor(canvas.height * yRatio)));
-        gl.readPixels(x, y, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, pixel);
-
-        if (pixel[0] + pixel[1] + pixel[2] > 18) {
-          litPixels += 1;
-        }
-      }
-
-      return { width: canvas.width, height: canvas.height, litPixels };
+      return {
+        width: Math.round(rect.width),
+        height: Math.round(rect.height),
+        modules,
+        connectionPaths,
+        hasCore: Boolean(core)
+      };
     });
 
-    if (canvasCheck.width < 250 || canvasCheck.height < 250 || canvasCheck.litPixels < 5) {
-      throw new Error(`${viewport.name}: canvas check failed ${JSON.stringify(canvasCheck)}`);
+    if (
+      visualCheck.width < 250 ||
+      visualCheck.height < 300 ||
+      visualCheck.modules < 5 ||
+      visualCheck.connectionPaths < 4 ||
+      !visualCheck.hasCore
+    ) {
+      throw new Error(`${viewport.name}: enterprise visual check failed ${JSON.stringify(visualCheck)}`);
     }
 
     await page.screenshot({
@@ -74,9 +62,7 @@ try {
     });
 
     await page.close();
-    console.log(
-      `${viewport.name}: ok, ${canvasCheck.width}x${canvasCheck.height}, lit=${canvasCheck.litPixels}`
-    );
+    console.log(`${viewport.name}: ok, ${visualCheck.width}x${visualCheck.height}, modules=${visualCheck.modules}`);
   }
 } finally {
   await browser.close();
