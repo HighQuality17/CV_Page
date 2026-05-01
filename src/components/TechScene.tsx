@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+﻿import { useEffect, useRef } from "react";
 import * as THREE from "three";
 
 const labels = ["Cloud", "POS", "Redes", "Automatización", "AWS", "Sistemas"];
@@ -56,12 +56,13 @@ export default function TechScene() {
     root.add(networkGroup, cubeGroup, haloGroup);
     scene.add(root);
 
-    const ambient = new THREE.AmbientLight(0xd7f6ff, 1.45);
-    const cyanLight = new THREE.PointLight(0x35d8ff, 7.8, 9);
+    // Digital Infrastructure Core: cloud, network, automation and systems as one calm structure.
+    const ambient = new THREE.AmbientLight(0xf8fafc, 1.35);
+    const cyanLight = new THREE.PointLight(0x38bdf8, 7.8, 9);
     cyanLight.position.set(2.8, 2.2, 3.4);
-    const violetLight = new THREE.PointLight(0x9c7cff, 6.2, 9);
+    const violetLight = new THREE.PointLight(0x8b5cf6, 6.2, 9);
     violetLight.position.set(-2.8, -1.8, 2.2);
-    const blueLight = new THREE.PointLight(0x4f7cff, 4.4, 7);
+    const blueLight = new THREE.PointLight(0x22d3ee, 4.4, 7);
     blueLight.position.set(0, 2.6, 1.6);
     scene.add(ambient, cyanLight, violetLight, blueLight);
 
@@ -84,7 +85,7 @@ export default function TechScene() {
 
     const particleMaterial = trackMaterial(
       new THREE.PointsMaterial({
-        color: 0x8defff,
+        color: 0x22d3ee,
         size: compact ? 0.018 : 0.022,
         transparent: true,
         opacity: 0.42,
@@ -118,7 +119,7 @@ export default function TechScene() {
 
     const nodeMaterial = trackMaterial(
       new THREE.PointsMaterial({
-        color: 0x6df4c9,
+        color: 0x10b981,
         size: compact ? 0.055 : 0.064,
         transparent: true,
         opacity: 0.96,
@@ -152,7 +153,7 @@ export default function TechScene() {
 
     const lineMaterial = trackMaterial(
       new THREE.LineBasicMaterial({
-        color: 0x35d8ff,
+        color: 0x38bdf8,
         transparent: true,
         opacity: compact ? 0.2 : 0.27
       })
@@ -163,8 +164,8 @@ export default function TechScene() {
     const coreGeometry = trackGeometry(new THREE.IcosahedronGeometry(compact ? 0.46 : 0.56, 1));
     const coreMaterial = trackMaterial(
       new THREE.MeshStandardMaterial({
-        color: 0x10243b,
-        emissive: 0x0b3b52,
+        color: 0x111827,
+        emissive: 0x0b3650,
         transparent: true,
         opacity: 0.82,
         metalness: 0.46,
@@ -176,7 +177,7 @@ export default function TechScene() {
       trackGeometry(new THREE.EdgesGeometry(coreGeometry)),
       trackMaterial(
         new THREE.LineBasicMaterial({
-          color: 0x35d8ff,
+          color: 0x38bdf8,
           transparent: true,
           opacity: 0.58
         })
@@ -187,8 +188,8 @@ export default function TechScene() {
     const cubeGeometry = trackGeometry(new THREE.BoxGeometry(0.34, 0.34, 0.34));
     const cubeMaterial = trackMaterial(
       new THREE.MeshStandardMaterial({
-        color: 0x10182a,
-        emissive: 0x101f44,
+        color: 0x111827,
+        emissive: 0x1e1b4b,
         transparent: true,
         opacity: 0.78,
         metalness: 0.34,
@@ -197,7 +198,7 @@ export default function TechScene() {
     );
     const cubeEdgeMaterial = trackMaterial(
       new THREE.LineBasicMaterial({
-        color: 0x9c7cff,
+        color: 0x8b5cf6,
         transparent: true,
         opacity: 0.62
       })
@@ -223,7 +224,7 @@ export default function TechScene() {
 
     const haloMaterial = trackMaterial(
       new THREE.MeshBasicMaterial({
-        color: 0x9c7cff,
+        color: 0x8b5cf6,
         transparent: true,
         opacity: compact ? 0.14 : 0.18,
         wireframe: true,
@@ -322,3 +323,4 @@ export default function TechScene() {
     </div>
   );
 }
+

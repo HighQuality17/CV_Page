@@ -4,18 +4,25 @@ export default {
   theme: {
     extend: {
       colors: {
-        graphite: "#0b0f17",
-        ink: "#05070c",
-        cyanline: "#35d8ff",
-        electric: "#4f7cff",
-        softviolet: "#9c7cff",
-        mintline: "#6df4c9"
+        graphite: "#0B1020",
+        ink: "#050816",
+        cyanline: "#38BDF8",
+        electric: "#22D3EE",
+        softviolet: "#8B5CF6",
+        mintline: "#10B981"
       },
       boxShadow: {
-        glow: "0 0 48px rgba(53, 216, 255, 0.22)",
-        violet: "0 0 42px rgba(156, 124, 255, 0.18)"
+        glow: "0 0 48px rgba(56, 189, 248, 0.22)",
+        violet: "0 0 42px rgba(139, 92, 246, 0.18)"
       },
       fontFamily: {
+        heading: [
+          "Space Grotesk",
+          "Inter",
+          "ui-sans-serif",
+          "system-ui",
+          "sans-serif"
+        ],
         sans: [
           "Inter",
           "ui-sans-serif",
