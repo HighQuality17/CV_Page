@@ -1,0 +1,74 @@
+---
+interface Props {
+  variant: string;
+  title: string;
+}
+
+const { variant, title } = Astro.props;
+---
+
+<div class={`project-mockup project-mockup--${variant}`} aria-label={`Visual del proyecto ${title}`}>
+  <div class="mockup-orbit" aria-hidden="true"></div>
+  <div class="mockup-window">
+    <div class="mockup-toolbar">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    {
+      variant === "pos" && (
+        <div class="pos-board">
+          <div class="pos-sidebar">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div class="pos-main">
+            <div class="pos-kpi"></div>
+            <div class="pos-grid">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+          <div class="pos-receipt">
+            <span></span>
+            <span></span>
+            <strong></strong>
+          </div>
+        </div>
+      )
+    }
+
+    {
+      variant === "network" && (
+        <div class="network-board">
+          <div class="network-cloud"></div>
+          <span class="network-node node-a"></span>
+          <span class="network-node node-b"></span>
+          <span class="network-node node-c"></span>
+          <span class="network-node node-d"></span>
+          <span class="network-line line-a"></span>
+          <span class="network-line line-b"></span>
+          <span class="network-line line-c"></span>
+        </div>
+      )
+    }
+
+    {
+      variant === "commerce" && (
+        <div class="commerce-board">
+          <div class="commerce-hero"></div>
+          <div class="commerce-products">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div class="commerce-cart"></div>
+        </div>
+      )
+    }
+  </div>
+</div>

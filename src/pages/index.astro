@@ -1,0 +1,350 @@
+---
+import {
+  ArrowRight,
+  BriefcaseBusiness,
+  Cloud,
+  Code2,
+  Download,
+  ExternalLink,
+  GraduationCap,
+  Mail,
+  Network,
+  ServerCog,
+  ShieldCheck,
+  Sparkles
+} from "lucide-react";
+import ScrollAnimations from "@/components/ScrollAnimations";
+import TechScene from "@/components/TechScene";
+import ProjectMockup from "@/components/ProjectMockup.astro";
+import VisualBackground from "@/components/VisualBackground.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import {
+  contactCta,
+  education,
+  highlights,
+  professionalValues,
+  profile,
+  projects,
+  technologyGroups,
+  timeline
+} from "@/data/profile";
+
+const pageTitle = `${profile.name} | Portfolio profesional`;
+const pageDescription =
+  "Portfolio profesional de Joni Alexander Cuartas Pineda: desarrollo web, cloud, redes, automatización, sistemas POS e infraestructura tecnológica.";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <VisualBackground />
+
+  <header class="nav-shell" aria-label="Navegación principal">
+    <a class="flex min-w-0 items-center gap-3" href="#inicio" aria-label="Ir al inicio">
+      <span class="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-cyanline text-sm font-black text-ink">
+        JC
+      </span>
+      <span class="hidden text-sm font-bold text-white sm:block">Joni Cuartas</span>
+    </a>
+
+    <nav class="hidden items-center gap-5 text-sm font-semibold text-slate-300 md:flex">
+      <a class="transition hover:text-cyanline" href="#sobre-mi">Sobre mí</a>
+      <a class="transition hover:text-cyanline" href="#tecnologias">Tecnologías</a>
+      <a class="transition hover:text-cyanline" href="#proyectos">Proyectos</a>
+      <a class="transition hover:text-cyanline" href="#contacto">Contacto</a>
+    </nav>
+
+    <a class="btn-ghost !min-h-10 !px-3 sm:!px-4" href={`mailto:${profile.email}`}>
+      <Mail size={16} aria-hidden="true" />
+      <span class="hidden sm:inline">Contactar</span>
+    </a>
+  </header>
+
+  <main id="contenido">
+    <section id="inicio" class="section-shell hero-grid flex items-center pt-32 sm:pt-36">
+      <div class="w-full">
+        <div class="grid w-full items-center gap-10 lg:grid-cols-[1fr_0.96fr] lg:gap-14">
+        <div class="max-w-3xl" data-animate>
+          <span class="eyebrow">
+            <Sparkles size={14} aria-hidden="true" />
+            Portfolio profesional
+          </span>
+
+          <h1 class="mt-6 max-w-4xl text-balance text-4xl font-black leading-[1.02] text-white sm:text-6xl lg:text-[4.45rem]">
+            {profile.name}
+          </h1>
+
+          <p class="hero-role mt-6 max-w-3xl text-sm font-semibold leading-7 text-cyan-50 sm:text-base">
+            {profile.role}
+          </p>
+
+          <p class="hero-headline mt-6 max-w-3xl text-base leading-8 text-slate-300 sm:text-lg">
+            {profile.headline}
+          </p>
+
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a class="btn-primary" href="#proyectos">
+              Ver proyectos
+              <ArrowRight size={18} aria-hidden="true" />
+            </a>
+            <a class="btn-secondary" href={profile.cvPath} download>
+              <Download size={18} aria-hidden="true" />
+              Descargar CV
+            </a>
+            <a class="btn-secondary" href={`mailto:${profile.email}`}>
+              <Mail size={18} aria-hidden="true" />
+              Contactarme
+            </a>
+          </div>
+
+          <div class="mt-7 flex flex-wrap gap-3" aria-label="Enlaces profesionales">
+            <a class="btn-ghost" href={profile.github} target="_blank" rel="noreferrer">
+              <Code2 size={18} aria-hidden="true" />
+              GitHub
+            </a>
+            <a class="btn-ghost" href={profile.linkedin} target="_blank" rel="noreferrer">
+              <BriefcaseBusiness size={18} aria-hidden="true" />
+              LinkedIn
+            </a>
+          </div>
+        </div>
+
+          <div class="hero-visual-card noise-mask" data-animate>
+            <TechScene client:load />
+          </div>
+        </div>
+
+        <div class="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-4" data-stagger>
+          {highlights.map((highlight) => (
+            <article class="highlight-card">
+              <p class="text-2xl font-black text-white">{highlight.value}</p>
+              <h2 class="mt-2 text-sm font-bold text-cyan-100">{highlight.label}</h2>
+              <p class="mt-2 text-xs leading-5 text-slate-400">{highlight.detail}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="sobre-mi" class="section-shell">
+      <div class="grid gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:items-start">
+        <div data-animate>
+          <span class="eyebrow">
+            <BriefcaseBusiness size={14} aria-hidden="true" />
+            Sobre mí
+          </span>
+          <h2 class="section-title">Perfil con base técnica, criterio y hambre de construir.</h2>
+        </div>
+
+        <div class="grid gap-4" data-stagger>
+          {profile.about.map((paragraph) => (
+            <p class="glass-card p-5 text-base leading-8 text-slate-200 sm:p-6">{paragraph}</p>
+          ))}
+        </div>
+      </div>
+
+      <div class="mt-12 rounded-lg border border-white/10 bg-white/[0.035] p-5 backdrop-blur-xl sm:p-6" data-animate>
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p class="text-sm font-bold uppercase text-cyanline">Valores profesionales</p>
+            <h3 class="mt-2 text-2xl font-bold text-white">Tecnología con criterio humano.</h3>
+          </div>
+          <p class="max-w-2xl text-sm leading-7 text-slate-300">
+            Mi forma de trabajar busca claridad, confianza y colaboración para que cada solución también aporte a personas y equipos.
+          </p>
+        </div>
+
+        <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-6" data-stagger>
+          {professionalValues.map((value) => (
+            <span class="value-card">{value}</span>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="tecnologias" class="section-shell">
+      <div data-animate>
+        <span class="eyebrow">
+          <Code2 size={14} aria-hidden="true" />
+          Tecnologías
+        </span>
+        <h2 class="section-title">Stack orientado a desarrollo, infraestructura y operación.</h2>
+        <p class="section-copy">
+          Herramientas y plataformas que uso para construir interfaces, APIs, bases de datos,
+          entornos reproducibles, laboratorios de red y despliegues cloud.
+        </p>
+      </div>
+
+      <div class="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-5" data-stagger>
+        {technologyGroups.map((group) => (
+          <article class="tech-group-card h-full">
+            <div class="flex h-11 w-11 items-center justify-center rounded-lg border border-cyanline/20 bg-cyanline/10 text-cyanline">
+              {group.category === "Cloud" ? (
+                <Cloud size={21} aria-hidden="true" />
+              ) : group.category === "Redes" ? (
+                <Network size={21} aria-hidden="true" />
+              ) : group.category === "Automatización" ? (
+                <ServerCog size={21} aria-hidden="true" />
+              ) : (
+                <Code2 size={21} aria-hidden="true" />
+              )}
+            </div>
+            <h3 class="mt-5 text-lg font-bold text-white">{group.category}</h3>
+            <p class="mt-2 min-h-12 text-sm leading-6 text-slate-400">{group.description}</p>
+            <div class="mt-5 flex flex-wrap gap-2">
+              {group.items.map((technology) => (
+                <span class="tech-badge !px-3 !py-2">{technology}</span>
+              ))}
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section id="proyectos" class="section-shell">
+      <div data-animate>
+        <span class="eyebrow">
+          <ServerCog size={14} aria-hidden="true" />
+          Proyectos destacados
+        </span>
+        <h2 class="section-title">Soluciones con intención real: negocio, redes y comercio web.</h2>
+      </div>
+
+      <div class="mt-12 grid gap-6 lg:grid-cols-3" data-stagger>
+        {projects.map((project) => (
+          <article class="project-card">
+            <ProjectMockup variant={project.visual} title={project.name} />
+
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <p class="text-xs font-bold uppercase tracking-[0.18em] text-cyanline">
+                  Proyecto destacado
+                </p>
+                <h3 class="mt-2 text-xl font-bold text-white">{project.name}</h3>
+              </div>
+              <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-cyanline/10 text-cyanline">
+                {project.name === "Sistema POS" ? (
+                  <ServerCog size={24} aria-hidden="true" />
+                ) : project.name === "E-commerce" ? (
+                  <Cloud size={24} aria-hidden="true" />
+                ) : (
+                  <Network size={24} aria-hidden="true" />
+                )}
+              </div>
+            </div>
+
+            <p class="mt-4 text-sm leading-7 text-slate-300">{project.description}</p>
+            <p class="mt-4 text-sm leading-7 text-cyan-100">
+              <span class="font-bold text-white">Enfoque:</span> {project.focus}
+            </p>
+
+            <div class="mt-5 flex flex-wrap gap-2">
+              {project.technologies.map((technology) => (
+                <span class="chip">{technology}</span>
+              ))}
+            </div>
+
+            <div class="mt-auto flex flex-wrap gap-3 pt-7">
+              <a class="btn-primary !min-h-11 !px-4" href={project.liveUrl} target="_blank" rel="noreferrer">
+                Ver proyecto
+                <ExternalLink size={16} aria-hidden="true" />
+              </a>
+              <a class="btn-ghost" href={project.repoUrl} target="_blank" rel="noreferrer">
+                {project.name.includes("redes") ? "Ver documentación" : "Ver GitHub"}
+                <Code2 size={16} aria-hidden="true" />
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section id="formacion" class="section-shell">
+      <div data-animate>
+        <span class="eyebrow">
+          <GraduationCap size={14} aria-hidden="true" />
+          Certificaciones y formación
+        </span>
+        <h2 class="section-title">Base universitaria, cloud y aprendizaje continuo.</h2>
+      </div>
+
+      <div class="mt-12 grid gap-5 md:grid-cols-3" data-stagger>
+        {education.map((item) => (
+          <article class:list={["education-card h-full", item.title.includes("AWS") && "education-card--featured"]}>
+            <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-lg bg-softviolet/15 text-softviolet">
+              <ShieldCheck size={23} aria-hidden="true" />
+            </div>
+            <h3 class="text-lg font-bold text-white">{item.title}</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-300">{item.place}</p>
+            <p class="mt-4 inline-flex rounded-full border border-cyanline/20 bg-cyanline/10 px-3 py-1 text-xs font-bold text-cyanline">
+              {item.status}
+            </p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section id="trayectoria" class="section-shell">
+      <div data-animate>
+        <span class="eyebrow">
+          <ArrowRight size={14} aria-hidden="true" />
+          Trayectoria
+        </span>
+        <h2 class="section-title">Camino técnico hacia práctica profesional y primer rol.</h2>
+      </div>
+
+      <ol class="relative mt-12 space-y-5 border-l border-cyanline/20 pl-7" data-stagger>
+        {timeline.map((item) => (
+          <li class="timeline-card">
+            <span class="timeline-dot" aria-hidden="true"></span>
+            <p class="text-sm leading-7 text-slate-200">{item}</p>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <section id="contacto" class="section-shell pb-12">
+      <div class="contact-cta grid gap-8 p-6 sm:p-9 lg:grid-cols-[1.1fr_0.9fr] lg:p-12" data-animate>
+        <div>
+          <span class="eyebrow">
+            <Mail size={14} aria-hidden="true" />
+            Contacto
+          </span>
+          <h2 class="section-title">{contactCta.title}</h2>
+          <p class="section-copy">
+            {contactCta.description}
+          </p>
+
+          <div class="mt-7 grid max-w-xl grid-cols-2 gap-3 sm:grid-cols-3" data-stagger>
+            {["Desarrollo web", "Cloud", "Redes", "POS", "Automatización", "Trabajo en equipo"].map((item) => (
+              <span class="chip !border-cyanline/20 !bg-cyanline/10 !py-2 text-center">{item}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="flex flex-col justify-center gap-3">
+          <a class="btn-primary" href={`mailto:${profile.email}`}>
+            <Mail size={18} aria-hidden="true" />
+            {profile.email}
+          </a>
+          <a class="btn-secondary" href={profile.linkedin} target="_blank" rel="noreferrer">
+            <BriefcaseBusiness size={18} aria-hidden="true" />
+            LinkedIn
+          </a>
+          <a class="btn-secondary" href={profile.github} target="_blank" rel="noreferrer">
+            <Code2 size={18} aria-hidden="true" />
+            GitHub
+          </a>
+          <a class="btn-ghost" href={profile.cvPath} download>
+            <Download size={18} aria-hidden="true" />
+            Descargar CV
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-white/10 px-5 py-8 text-center text-sm text-slate-400">
+    <p>© {new Date().getFullYear()} {profile.name}. Desarrollo web, cloud, redes y automatización.</p>
+  </footer>
+
+  <ScrollAnimations client:load />
+</BaseLayout>
